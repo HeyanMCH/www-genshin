@@ -20,6 +20,14 @@ function resizeWindow(){
     root.style.height = `${width}px`
     root.style.top = `${(height - width) / 2}px`
     root.style.left = `${0 - (height - width) / 2}px`
+    app.use(express.static('public', {
+    setHeaders: function(res, path, stat) {
+        if (path.endsWith('.js')) {
+            res.set('Content-Type', 'application/javascript');
+        }
+    }
+}));
+
   }
 }
 resizeWindow()
